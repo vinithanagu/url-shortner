@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Builder
@@ -26,6 +28,7 @@ import org.springframework.data.annotation.CreatedDate;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "url")
 public class UrlEntity {
   @Id
@@ -35,8 +38,8 @@ public class UrlEntity {
   @Column(name = "long_url")
   private String longUrl;
 
-  @Column(name = "created_date")
   @CreatedDate
+  @Column(name = "created_date")
   private Date createdDate;
 
 }
